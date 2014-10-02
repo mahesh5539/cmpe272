@@ -1,15 +1,15 @@
-cmpe272
+## cmpe272
 =======
 
-CMPE 272 Group Project
+_CMPE 272 Group Project_
 
-> Developers - 
+### Developers -
 
--Akanksha Singh
--Mahesh Dhamgunde
--Manami Bhunia
--Ruchi Shah
+- Akanksha Singh
+- Mahesh Dhamgunde
+- Manami Bhunia
+- Ruchi Shah
 
-> Guide -
+### Guide -
 
 Prof. Rakesh Ranjan
