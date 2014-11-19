@@ -18,6 +18,33 @@ header .navbar{
   margin-bottom: 5px;
 }
 
+/*
+nav ul li.custom-dpd ul{
+  display: none;
+}
+
+nav ul li.custom-dpd:hover > ul {
+
+  display: inline-table;
+}
+
+nav ul li.custom-dpd ul{
+  background: #efefef;
+	background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%);
+	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+	padding: 0 20px;
+	border-radius: 10px;
+	list-style: none;
+	position: relative;
+  z-index: 5;
+}
+
+nav ul li.custom-dpd ul:after {
+	content: ""; clear: both; display: block;
+}
+*/
 #brand-name {
   font-family: 'Sonsie One',serif;
   text-shadow: 2px 2px 2px #FFFFFF;
@@ -35,6 +62,10 @@ header .navbar{
 .user-thumb {
   box-sizing: content-box;
   margin-right: 10px;
+}
+
+.logout {
+  margin-right: 50px;
 }
 #activity {
   border-radius: 2px;
@@ -85,4 +116,36 @@ header .navbar{
 }
 .search-icon {
   margin-top: -1px;
+}
+
+.demo {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  width: 160px;
+  z-index: 902;
+  background: none repeat scroll 0% 0% #F1DA91;
+}
+
+.demo > span {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  display: block;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px 0px 0px 5px;
+  background: none repeat scroll 0% 0% #F1DA91;
+  padding: 2px;
+  text-align: center;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.demo > span i {
+  font-size: 17px;
+}
+
+.txt-color-blueDark {
+    color: #4C4F53 !important;
 }

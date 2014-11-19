@@ -34,17 +34,34 @@ body{
     margin-top: 100px;
   position: relative;
 }
+
+#local-spot-list .section-heading {
+	background-color: #A6A6A6;
+	height: 30px;
+	padding: 0 0 0 0;
+	text-align: center;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
 #local-spot-list {
   margin-left: 20px;
   height: 400px;
   width: 95%;
-  overflow-y: scroll !important;
   border-style: solid;
   border-color: #A6A6A6;
   border-width: 1px;
-  padding: 2px 2px 2px 2px;
   box-shadow: 10px 10px 5px #888888;
   background-color: #fff;
+}
+
+#local-spot-list .incident-list {
+	height: 350px;
+	overflow-y: scroll !important;
+}
+
+#local-spot-list .incident-list .media {
+	padding: 2px 2px 2px 2px;
 }
 
 #local-spot-list .media .thumb-pic{
