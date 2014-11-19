@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Sonsie One";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Sonsie One"), local("SonsieOne-Regular"), url("../fonts/EL7Rcl854lo1-oEwLR8r0r3hpw3pgy2gAi-Ip7WPMi0.woff") format("woff");
+}
+
 *, *:before, *:after {box-sizing:  border-box !important;}
 
 body{

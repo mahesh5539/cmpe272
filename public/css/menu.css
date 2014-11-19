@@ -17,8 +17,12 @@ nav {
 header .navbar{
   margin-bottom: 5px;
 }
-.navbar-brand {
-   color: #FFD700;
+
+#brand-name {
+  font-family: 'Sonsie One',serif;
+  text-shadow: 2px 2px 2px #FFFFFF;
+  color: #545454;
+  font-size: 2.85rem;
 }
 .search {
     position: absolute;
