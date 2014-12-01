@@ -8,10 +8,13 @@
 <body>
 	<h2>Hello World!</h2>
 
-	<h3>List of Users <small>
+	<h3>
+		List of Users <small> 
 			<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#addUserModal">Add new User</a>
-		</small></h3>
-	<table class="table table-stripped">
+			<a href="#" class="btn btn-lg btn-success btn-login" data-toggle="modal" data-target="#loginModal">Login</a>
+		</small>
+	</h3>
+	<table class="table table-stripped user-list">
 		<thead>
 			<tr>
 				<th>User Name</th>
@@ -24,72 +27,129 @@
 		</tbody>
 	</table>
 
-	<div id="addUserModal" class="modal hide fade" tabindex="-1"
-		data-width="760">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3>Insert user Details</h3>
-		</div>
-		<div class="modal-body">
-			<div class="row-fluid">
-				<div class="span6">
-					<h4>Some Input</h4>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
+	<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog"
+		aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"><i class="glyphicon glyphicon-remove"></i></button>
+					<h4 class="modal-title" id="myModalLabel">Add User</h4>
 				</div>
-				<div class="span6">
-					<h4>Some More Input</h4>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
-					<p>
-						<input class="span12" type="text">
-					</p>
+				<div class="modal-body">
+					User: <input type="text" id="userName"><br/>
+					Password: <input type="password" id="password"><br/>
+					First Name: <input type="text" id="firstName"><br/>
+				</div>
+				<div class="modal-footer">
+					<div class="create-user-response pull-left"></div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="save-user btn btn-primary">Save</button>
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+	</div>
+
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"><i class="glyphicon glyphicon-remove"></i></button>
+					<h4 class="modal-title" id="myModalLabel">Login</h4>
+				</div>
+				<div class="modal-body">
+					User: <input type="text" id="userName"><br/>
+					Password: <input type="password" id="password"><br/>
+				</div>
+				<div class="modal-footer">
+					<div class="login-user-response pull-left"></div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="login-user btn btn-primary">Save</button>
+				</div>
+			</div>
 		</div>
 	</div>
+	
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		
+	<script>
+		$(function(){
+			fetchUsers();
+			$(".save-user").click(function(event){
+				event.preventDefault();
+				$(".create-user-response").html();
+				var user = {};
+				user.userName = $("#userName").val();
+				user.password = $("#password").val();
+				user.firstName = $("#firstName").val();
+				$.ajax({
+				    url : "rest/User/create?",
+				    type: "POST",
+				    dataType: 'json',
+				    contentType: "application/json; charset=utf-8",
+				    data : JSON.stringify(user),
+				    success: function(data, textStatus, jqXHR)
+				    {
+				        console.log(data);
+				        $(".create-user-response").html("User saved successfully!");
+				    },
+				    error: function (jqXHR, textStatus, errorThrown)
+				    {
+				 
+				    }
+				});
+			});
+
+			$(".login-user").click(function(event){
+				event.preventDefault();
+				$(".login-user-response").html();
+				var user = {};
+				user.userName = $("#userName").val();
+				user.password = $("#password").val();
+				user.firstName = $("#firstName").val();
+				$.ajax({
+				    url : "rest/User/login?",
+				    type: "POST",
+				    dataType: 'json',
+				    contentType: "application/json; charset=utf-8",
+				    data : JSON.stringify(user),
+				    success: function(data, textStatus, jqXHR)
+				    {
+				        console.log(data);
+				        $(".create-user-response").html("User saved successfully!");
+				    },
+				    error: function (jqXHR, textStatus, errorThrown)
+				    {
+				 
+				    }
+				});
+			});
+		});
+		function fetchUsers() {
+			$.ajax({
+			    url : "rest/User/list",
+			    type: "GET",
+			    success: function(data, textStatus, jqXHR)
+			    {
+			    	console.log(data);
+			    	var response = "";
+			    	data.forEach(function(entry) {
+			    		response += "<tr><td>"+entry.userName+"</td><td>"+entry.firstName+"</td><td>"+entry.lastName+"</td><td>"+entry.email+"</td></tr>";
+			    	});
+			        
+			        $(".user-list tbody").html(response);
+			    },
+			    error: function (jqXHR, textStatus, errorThrown)
+			    {
+			 
+			    }
+			});
+		}
+	</script>
 </body>
 </html>

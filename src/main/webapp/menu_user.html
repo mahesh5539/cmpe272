@@ -1,0 +1,135 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" id="brand-name" href="#">Citizen Spot</a>
+  </div>
+  <div class="search">
+    <div class="input-group">
+      <span class="input-group-addon">Search</span>
+      <input type="text" class="form-control" placeholder= "search by address or ZIP"> <!--manami-->
+      <span class="input-group-addon search-icon glyphicon glyphicon-search"></span>
+    </div>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-left">
+        <!-- <li><a href="#">Left</a></li>
+        <li><a href="#about">Left</a></li> -->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="user-thumb">
+        <span id="activity" class="activity-dropdown">
+          <i class="fa fa-user"></i>
+          <b class="badge bg-color-red bounceIn animated"> 21 </b>
+        </span>
+      </li>
+      <li><a data-toggle="modal" href="#uploadModal" data-event-id=""><i class="glyphicon glyphicon-cloud-upload"></i> Upload</a></li>
+      <!-- <li class="custom-dpd"><a href="#about"><i class="fa fa-gear"></i> Settings</a></li> -->
+
+      <li class="logout"><a href="#contact"><i class="fa fa-power-off"></i> Logout</a></li>
+      <li>
+        <div class="demo"><span id="demo-setting"><i class="fa fa-cog txt-color-blueDark"></i></span></div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<hr/>
+
+<!-- Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+        <h4 class="modal-title">Upload a problem</h4>
+      </div>
+      <div class="modal-body">
+		<form class="form-horizontal" role="form" action="rest/Incident/upload" enctype="multipart/form-data" method="post">
+		  <div class="form-group">
+		    <label for="problemType" class="col-sm-3 control-label">Type of problem</label>
+		    <div class="col-sm-9">
+		      <select class="form-control" id="problemType" name="problemType">
+		      	<option value="pothole">Pot Hole</option>
+		      	<option value="brokenPipe">Broken Pipe</option>
+		      	<option value="fallenTree">Fallen tree</option>
+		      </select>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="problemSeverity" class="col-sm-3 control-label">Severity</label>
+		    <div class="col-sm-9">
+		      <select class="form-control" id="problemSeverity" name="problemSeverity">
+		      	<option value="0">Select severity where 1 being lowest and 5 being highest</option>
+		      	<option value="1">1</option>
+		      	<option value="2">2</option>
+		      	<option value="3">3</option>
+		      	<option value="4">4</option>
+		      	<option value="5">5</option>
+		      </select>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="problem-date" class="col-sm-3 control-label">Date</label>
+		    <div class="col-sm-9">
+		      <div class='input-group date' id='problem-date' data-date-format="yyyy-mm-dd">
+				<input type='text' class="form-control" />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="street" class="col-sm-3 control-label">Street</label>
+		    <div class="col-sm-9">
+		      <input type="text" class="form-control" id="street" name="street" placeholder="Street Address.">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="city" class="col-sm-3 control-label">City</label>
+		    <div class="col-sm-9">
+		      <input type="text" class="form-control" id="city" name="city" placeholder="City">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="picture" class="col-sm-3 control-label">State</label>
+		    <div class="col-sm-9">
+		      <input type="text" class="form-control" id="state" name="state" placeholder="State">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="country" class="col-sm-3 control-label">Country</label>
+		    <div class="col-sm-9">
+		      <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="zip" class="col-sm-3 control-label">ZIP</label>
+		    <div class="col-sm-9">
+		      <input type="text" class="form-control" id="zip" name="zip" placeholder="ZIP">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="picture" class="col-sm-3 control-label">Picture</label>
+		    <div class="col-sm-9">
+		      <input type="file" class="form-control" id="picture" name="picture" placeholder="Upload a picture.">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="description" class="col-sm-3 control-label">Description</label>
+		    <div class="col-sm-9">
+		      <textarea class="form-control" id="description" name="description" placeholder="Please describe the issue"></textarea>
+		    </div>
+		  </div>
+		  
+      </div>
+      <div class="modal-footer">
+      	<button type="submit" id="save" class="btn btn-default pull-right">Save</button>
+      	</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    $(function () {
+        $('#problem-date').datetimepicker();
+        
+    });
+</script>

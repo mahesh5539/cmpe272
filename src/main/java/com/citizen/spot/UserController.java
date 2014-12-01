@@ -35,7 +35,7 @@ public class UserController {
     private ObjectMapper mapper = new ObjectMapper();
     
 	@POST
-	@Path("create/")
+	@Path("register/")
 	public Response createUser(String userStr) {
 
 		UserDAO userDAO = new UserDAO();
