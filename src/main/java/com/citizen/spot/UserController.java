@@ -27,6 +27,7 @@ import org.json.simple.JSONObject;
 import com.citizen.spot.dao.UserDAO;
 import com.citizen.spot.model.User;
 import com.citizen.spot.util.HashUtil;
+import com.sun.jersey.api.view.Viewable;
 
 @Path("/User")
 public class UserController {
@@ -36,23 +37,32 @@ public class UserController {
     
 	@POST
 	@Path("register/")
-	public Response createUser(String userStr) {
+	public Viewable register(
+			@FormParam("firstName") String firstName,
+			@FormParam("lastName") String lastName,
+			@FormParam("email") String email,
+			@FormParam("userName") String userName,
+			@FormParam("password") String password) {
 
 		UserDAO userDAO = new UserDAO();
 		try {
 			
-			User user = mapper.readValue(userStr, User.class);
-			user.setPassword(HashUtil.getSaltedHash(user.getPassword()));
-			return Response.status(200).entity(userDAO.createUser(user)+"").build();
+			User user = new User(userName, HashUtil.getSaltedHash(password), firstName, lastName, email);
+			int rowNum = userDAO.createUser(user);
+			if(rowNum > 0) {
+				user.setPassword("");
+				return new Viewable("/home.jsp", user);
+			}
+			return new Viewable("/index.jsp", null);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new Viewable("/index.jsp", null);
 		}
-		return Response.status(500).entity("Failed").build();
 	}
 	
 	@POST
 	@Path("login")
-	public Response getUser(@QueryParam("userName") String userName, @QueryParam("password") String password) {
+	public Viewable login(@FormParam("userName") String userName, @FormParam("password") String password) {
 
 		UserDAO userDAO = new UserDAO();
 		try {
@@ -60,25 +70,27 @@ public class UserController {
 			if(HashUtil.check(password, user.getPassword())) {
 				user.setPassword("");
 				ObjectMapper mapper = new ObjectMapper();
-				return Response.status(200).entity(mapper.writeValueAsString(user)).build();
+				return new Viewable("/home.jsp", user);
+			}
+			else {
+				return new Viewable("/index.jsp", null);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return Response.status(500).entity(e.getMessage()).build();
+			logger.error(e.getMessage());
+			return new Viewable("/index.jsp", e.getMessage());
 		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
+			return new Viewable("/index.jsp", e.getMessage());
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
+			return new Viewable("/index.jsp", e.getMessage());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
+			return new Viewable("/index.jsp", e.getMessage());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
+			return new Viewable("/index.jsp", e.getMessage());
 		}
-		return Response.status(500).entity("failed").build();
 	}
 	
 	@GET
