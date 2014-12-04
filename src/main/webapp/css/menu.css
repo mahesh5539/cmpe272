@@ -1,0 +1,127 @@
+header {
+
+  height: 70px;
+  background:url(../images/bgnoise_lg.png);
+}
+
+header hr{
+  border-width: 1px 0px;
+  border-color: #666 transparent #ccc transparent;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+nav {
+  background:url(../images/bgnoise_lg.png);
+}
+
+header .navbar{
+  margin-bottom: 5px;
+}
+
+#brand-name {
+  font-family: 'Sonsie One',serif;
+  text-shadow: 2px 2px 2px #FFFFFF;
+  color: #545454;
+  font-size: 2.85rem;
+}
+.search {
+    position: absolute;
+    width: 50%;
+    text-align: center;
+    margin-top: 8px;
+    margin-left: 20%;
+}
+
+.user-thumb {
+  box-sizing: content-box;
+  margin-right: 10px;
+}
+
+.logout {
+  margin-right: 50px;
+}
+#activity {
+  border-radius: 2px;
+  cursor: default !important;
+  display: inline-block;
+  font-weight: 700;
+  height: 40px;
+  width: 40px;
+  padding: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  -moz-user-select: none;
+  background-color: #F8F8F8;
+  background-image: -moz-linear-gradient(center top , #F8F8F8, #F1F1F1);
+  border: 1px solid #BFBFBF;
+  color: #C4BAB6;
+  font-size: 19px;
+  margin: 5px 0px 0px;
+  position: relative;
+  text-align: center;
+  color: #C4BAB6;
+}
+#activity b.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  cursor: pointer;
+  background: none repeat scroll 0% 0% #0091D9;
+  display: inline-block;
+  font-size: 10px;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 0px rgba(0, 0, 0, 0.07) inset;
+  color: #FFF;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 2px 4px 3px;
+  text-align: center;
+  line-height: normal;
+}
+.animated.bounceIn {
+  animation-name: bounceIn;
+}
+.bg-color-red {
+  background-color: #A90329 !important;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.search-icon {
+  margin-top: -1px;
+}
+
+.demo {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  width: 160px;
+  z-index: 902;
+  background: none repeat scroll 0% 0% #F1DA91;
+}
+
+.demo > span {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  display: block;
+  height: 30px;
+  width: 40px;
+  border-radius: 5px 0px 0px 5px;
+  background: none repeat scroll 0% 0% #F1DA91;
+  padding: 2px;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.demo > span i {
+  font-size: 17px;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+.txt-color-blueDark {
+    color: #4C4F53 !important;
+}
